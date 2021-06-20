@@ -35,3 +35,14 @@ export const addAnswer = async (data) => {
   const response = await firebase.firestore().collection('answer').add(data);
   return response;
 };
+export const getAnswer = async (answerId) => {
+  const answerSnapshot = await firebase
+    .firestore()
+    .collection('answer')
+    .doc(String(answerId))
+    .get();
+  let answerData = answerSnapshot.exists
+    ? JSON.stringify(answerSnapshot.data())
+    : null;
+  return answerData;
+};
