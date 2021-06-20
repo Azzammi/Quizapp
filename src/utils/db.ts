@@ -31,3 +31,7 @@ export const getSingleQuiz = async (quizId) => {
   const quizData = snapshot.exists ? JSON.stringify(snapshot.data()) : null;
   return quizData;
 };
+export const addAnswer = async (data) => {
+  const response = await firebase.firestore().collection('answer').add(data);
+  return response;
+};
